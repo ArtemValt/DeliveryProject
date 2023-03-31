@@ -12,4 +12,5 @@ public class ResponseHandler {
                 Map.of("message", message.getMessage(), "status", status.value(), "data", responseObj);
         return new ResponseEntity<>(responseMap, status);
     }
+
 }

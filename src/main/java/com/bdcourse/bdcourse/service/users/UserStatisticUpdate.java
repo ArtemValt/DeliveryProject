@@ -1,4 +1,4 @@
-package com.bdcourse.bdcourse.service;
+package com.bdcourse.bdcourse.service.users;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

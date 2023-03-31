@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Entity
 @Data
 @Table(name = "aaa_users")
-public class User {
+public class UserEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(generator = "uuid2")
@@ -20,4 +20,6 @@ public class User {
     private BigDecimal rubles;
     private String password;
     private String email;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }

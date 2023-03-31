@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "aaa_adminusers")
-public class AdminUser {
+public class AdminUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @GenericGenerator(name = "uuid", strategy = "uuid2")
