@@ -2,6 +2,7 @@ package com.bdcourse.bdcourse.model.products;
 
 import com.bdcourse.bdcourse.model.stors.StoreEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ElectronicEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -25,4 +27,5 @@ public class ElectronicEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_position_id")
     StoreEntity store;
+
 }

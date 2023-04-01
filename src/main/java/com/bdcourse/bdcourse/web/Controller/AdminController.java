@@ -3,7 +3,7 @@ package com.bdcourse.bdcourse.web.Controller;
 import com.bdcourse.bdcourse.bdcourseenums.ResponseEnum;
 import com.bdcourse.bdcourse.helper.AppHelper;
 import com.bdcourse.bdcourse.model.vo.UserVo;
-import com.bdcourse.bdcourse.service.users.AdminService;
+import com.bdcourse.bdcourse.service.users.admin.AdminService;
 import com.bdcourse.bdcourse.web.ResponseHandler;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/admin/service/")
+@RequestMapping(value = "/admin/service")
 public class AdminController {
     private final AdminService adminService;
 

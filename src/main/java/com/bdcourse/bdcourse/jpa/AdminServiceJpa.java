@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface UserJpa extends JpaRepository<UserEntity, UUID> {
+public interface AdminServiceJpa extends JpaRepository<UserEntity, UUID> {
 
     @Modifying
     @Query(value = "insert into aaa_users (id,name,surname,rubles,password,email,status) "
@@ -26,6 +26,6 @@ public interface UserJpa extends JpaRepository<UserEntity, UUID> {
     List<UserEntity> getAllUsers();
 
     @Modifying
-    @Query(value = "update UserEntity u set u.status='REJECTED' where 1=1 and u.email=:email and u.name =:name")
-    int banUser(@Param("email")String email,@Param("name")String name);
+    @Query(value = "update UserEntity u set u.status =:status where 1=1 and u.email=:email and u.name =:name")
+    int banUser(@Param("status")String status,@Param("email")String email,@Param("name")String name);
 }
