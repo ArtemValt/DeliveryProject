@@ -2,7 +2,6 @@ package com.bdcourse.bdcourse.model.admin;
 
 import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
