@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface AdminServiceJpa extends JpaRepository<UserEntity, UUID> {
+public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     @Modifying
     @Query(value = "insert into aaa_users (id,name,surname,rubles,password,email,status) "
@@ -28,4 +29,7 @@ public interface AdminServiceJpa extends JpaRepository<UserEntity, UUID> {
     @Modifying
     @Query(value = "update UserEntity u set u.status =:status where 1=1 and u.email=:email and u.name =:name")
     int banUser(@Param("status")String status,@Param("email")String email,@Param("name")String name);
+
+    @Query(value = "select u from UserEntity u where u.email =:email")
+    Optional<UserEntity> findByEmail(@Param(value = "email") String email);
 }

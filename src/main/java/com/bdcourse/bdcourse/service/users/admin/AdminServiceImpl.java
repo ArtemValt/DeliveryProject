@@ -1,7 +1,7 @@
 package com.bdcourse.bdcourse.service.users.admin;
 
 import com.bdcourse.bdcourse.helper.AppHelper;
-import com.bdcourse.bdcourse.jpa.AdminServiceJpa;
+import com.bdcourse.bdcourse.jpa.UserRepository;
 import com.bdcourse.bdcourse.jpa.ProductStoreCrudJp;
 import com.bdcourse.bdcourse.jpa.StoreCrudJpa;
 import com.bdcourse.bdcourse.model.admin.Status;
@@ -26,7 +26,7 @@ import java.util.UUID;
 @Transactional
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
-    private final AdminServiceJpa adminServiceJpaService;
+    private final UserRepository adminServiceJpaService;
     private final StoreCrudJpa storeCrudJpa;
     private final ProductStoreCrudJp productStoreCrudJp;
     @Override
