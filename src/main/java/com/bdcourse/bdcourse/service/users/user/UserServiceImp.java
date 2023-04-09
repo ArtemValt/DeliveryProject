@@ -25,9 +25,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImp implements UserService {
     private final UserServicesDto userServicesDto;
-    private final UserRepository userRepository;
-    private final DataHelper dataHelper;
-    private final JwtService jwtService;
 
     @Override
     public void buyProduct(ElectronicProductVo electronicProductVo) {
@@ -59,12 +56,5 @@ public class UserServiceImp implements UserService {
         return userServicesDto.getUsersProductsByUserId(userId).getList();
     }
 
-    @Override
-    public String registerUser(String email, String password) {
-        UserVo userVo = dataHelper.getUserVo(email, null,null, null, password, null);
-        UserEntity saveEntity = userRepository.save(dataHelper.getUserEntityFromUserVo(userVo));
-        String jwtToken = jwtService.generateToken(saveEntity.getId(),saveEntity);
-        String s = SecurityHelper.getUserIdFromToken(jwtToken);
-        return jwtToken;
-    }
+
 }

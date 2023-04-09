@@ -11,6 +11,6 @@ public interface UserService {
     List<StoreVo> getStores(String name, String address);
     void getProductsFromCurrentStore(StoreVo storeVo);
     List<ElectronicProductVo> getProductsUser(String userId);
-    String registerUser(String email, String password);
+
 
 }

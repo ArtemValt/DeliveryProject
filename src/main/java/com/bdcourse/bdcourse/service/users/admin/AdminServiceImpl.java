@@ -54,7 +54,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<UserVo> getAllUsers() {
         return adminServiceJpaService.getAllUsers().stream()
-                .map(dataHelper::getUserVo)
+                .map(DataHelper::getUserVo)
                 .toList();
     }
 

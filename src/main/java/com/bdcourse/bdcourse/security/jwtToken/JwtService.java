@@ -41,11 +41,12 @@ public final class JwtService {
         return extractAllClaims(token);
     }
 
+    //TODO replase expiration date
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetail) {
         return Jwts.builder().setClaims(extraClaims)
                 .setSubject(userDetail.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60*10))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -65,7 +66,7 @@ public final class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String userName = extractUserName(toString());
+        final String userName = getClaimsFromToken(token).getSubject();
         return userDetails.getUsername().equals(userName) && !isTokenExpired(token);
     }
 

@@ -1,6 +1,7 @@
 package com.bdcourse.bdcourse.model.admin;
 
 import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
+import com.bdcourse.bdcourse.model.NameEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

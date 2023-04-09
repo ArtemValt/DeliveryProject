@@ -6,6 +6,7 @@ import com.bdcourse.bdcourse.model.admin.Status;
 import com.bdcourse.bdcourse.model.admin.UserEntity;
 import com.bdcourse.bdcourse.model.vo.UserVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,14 @@ import java.math.BigDecimal;
 @Service
 @RequiredArgsConstructor
 public class DataHelper {
-    private final PasswordEncoder passwordEncoder;
+    private static PasswordEncoder passwordEncoder;
 
-    public UserVo getUserVo(String email, String surname, String name, BigDecimal rubles, String password, Status status) {
+    @Autowired(required = true)
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder){
+        DataHelper.passwordEncoder=passwordEncoder;
+    }
+
+    public static UserVo getUserVo(String email, String surname, String name, BigDecimal rubles, String password, Status status) {
         return UserVo.builder()
                 .email(email)
                 .surname(surname)
@@ -28,7 +34,7 @@ public class DataHelper {
                 .build();
     }
 
-    public UserVo getUserVo(UserEntity userEntity) {
+    public static UserVo getUserVo(UserEntity userEntity) {
         return UserVo.builder().id(userEntity.getId())
                 .email(userEntity.getEmail())
                 .surname(userEntity.getSurname())
@@ -39,7 +45,7 @@ public class DataHelper {
                 .roleEnum(RoleEnum.USER).build();
     }
 
-    public UserEntity getUserEntityFromUserVo(UserVo userVo) {
+    public static UserEntity getUserEntityFromUserVo(UserVo userVo) {
         return new UserEntity(userVo.getId(), userVo.getName(),
                 userVo.getSurname(), userVo.getRubles(),
                 userVo.getPassword(), userVo.getEmail(),
