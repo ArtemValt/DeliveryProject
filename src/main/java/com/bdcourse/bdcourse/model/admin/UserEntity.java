@@ -2,7 +2,9 @@ package com.bdcourse.bdcourse.model.admin;
 
 import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "aaa_users")
 public class UserEntity implements UserDetails {
     @Id
@@ -25,6 +29,7 @@ public class UserEntity implements UserDetails {
     private String surname;
     private BigDecimal rubles;
     private String password;
+    @Column(unique=true)
     private String email;
     @Enumerated(EnumType.STRING)
     private Status status;

@@ -1,5 +1,6 @@
 package com.bdcourse.bdcourse.model.products;
 
+import com.bdcourse.bdcourse.model.admin.UserEntity;
 import com.bdcourse.bdcourse.model.stors.StoreEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,9 @@ public class ElectronicEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_position_id")
     StoreEntity store;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_position_id")
+    UserEntity userEntity;
 
 }

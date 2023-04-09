@@ -20,23 +20,28 @@ import java.util.function.Function;
 
 @Service
 public final class JwtService {
-    @Value(value = "${very_secret_key}")
-    private static String SECRET_KEY;
+    @Value("${very_secret_key}")
+    private String SECRET_KEY;
 
     public String extractUserName(@NonNull String token) {
         return extractClaims(token, Claims::getSubject);
     }
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(String userId,UserDetails userDetails) {
+        Map<String,Object> extraClaims = new HashMap<>();
+        extraClaims.put("id",userId);
+        return generateToken(extraClaims, userDetails);
     }
 
     public <T> T extractClaims(String token, Function<Claims, T> claimsTFunction) {
         final Claims claims = extractAllClaims(token);
         return claimsTFunction.apply(claims);
     }
+    public Claims getClaimsFromToken(String token){
+        return extractAllClaims(token);
+    }
 
-    public String generateToken(Map<String, Objects> extraClaims, UserDetails userDetail) {
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetail) {
         return Jwts.builder().setClaims(extraClaims)
                 .setSubject(userDetail.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
@@ -49,7 +54,7 @@ public final class JwtService {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
 
     }

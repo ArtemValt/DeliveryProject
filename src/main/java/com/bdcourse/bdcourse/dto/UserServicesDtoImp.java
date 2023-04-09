@@ -1,6 +1,8 @@
 package com.bdcourse.bdcourse.dto;
 
+import com.bdcourse.bdcourse.model.PartOfList;
 import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
+import com.bdcourse.bdcourse.model.vo.PartOfListVo;
 import com.bdcourse.bdcourse.model.vo.StoreVo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -39,9 +41,19 @@ public class UserServicesDtoImp implements UserServicesDto {
 
     @Override
     public ElectronicProductVo checkPrice(ElectronicProductVo electronicProductVo, String userId) {
-        var query = em.createQuery("select new com.bdcourse.bdcourse.model.vo.ElectronicProductVo(e.id,e.price,e.countProducts,e.productName,e.store.storeName) from ElectronicEntity e where e.id=:id ");
+        var query = em.createQuery("select new com.bdcourse.bdcourse.model.vo.ElectronicProductVo(e.id,e.price,e.countProducts,e.productName,e.store.storeName,e.userEntity.id)" +
+                " from ElectronicEntity e where e.id=:id ");
         query.setParameter("id", userId);
         return (ElectronicProductVo) query.getSingleResult();
+    }
+
+    @Override
+    public PartOfList<ElectronicProductVo> getUsersProductsByUserId(String userId) {
+        var query = em.createQuery("select new com.bdcourse.bdcourse.model.vo.ElectronicProductVo(e.id,e.price,e.countProducts,e.productName,e.store.storeName,e.userEntity.id) " +
+                "from ElectronicEntity e where e.userEntity.id =: userId");
+        query.setParameter("userId",userId);
+
+        return new PartOfListVo<>(query.getResultList(),query.getResultList().size());
     }
 
 

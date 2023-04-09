@@ -10,5 +10,7 @@ public interface UserService {
     void resetProduct(ElectronicProductVo electronicProductVo);
     List<StoreVo> getStores(String name, String address);
     void getProductsFromCurrentStore(StoreVo storeVo);
+    List<ElectronicProductVo> getProductsUser(String userId);
+    String registerUser(String email, String password);
 
 }

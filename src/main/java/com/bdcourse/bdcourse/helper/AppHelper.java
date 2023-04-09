@@ -8,13 +8,16 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class AppHelper {
-
     public static <T extends NameEntity> void setIdIfIdExist(T obj) {
         if (StringUtils.isBlank(obj.getId()))
             obj.setId(UUID.randomUUID().toString());
     }
-    public static boolean checkEmail(String email){
-        Pattern pattern = Pattern.compile(RegexEnum.EMAIL_PATTERN.getPattern());
-        return pattern.matcher(email).matches();
+
+    public static boolean checkEmail(String email) {
+        return Pattern.compile(RegexEnum.EMAIL_PATTERN.getPattern()).matcher(email).matches();
+    }
+
+    public static boolean isValidUUID(String uuid) {
+        return Pattern.compile(RegexEnum.GUID_PATTERN.getPattern()).matcher(uuid).matches();
     }
 }

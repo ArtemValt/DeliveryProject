@@ -18,5 +18,6 @@ public class ElectronicProductVo implements NameEntity {
     private int count;
     private String name;
     private String store;
+    private String userID;
 
 }

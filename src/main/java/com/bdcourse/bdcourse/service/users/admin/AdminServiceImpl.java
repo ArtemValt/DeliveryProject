@@ -1,6 +1,7 @@
 package com.bdcourse.bdcourse.service.users.admin;
 
 import com.bdcourse.bdcourse.helper.AppHelper;
+import com.bdcourse.bdcourse.helper.DataHelper;
 import com.bdcourse.bdcourse.jpa.ProductStoreCrudJp;
 import com.bdcourse.bdcourse.jpa.StoreCrudJpa;
 import com.bdcourse.bdcourse.jpa.UserRepository;
@@ -29,6 +30,7 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository adminServiceJpaService;
     private final StoreCrudJpa storeCrudJpa;
     private final ProductStoreCrudJp productStoreCrudJp;
+    private final DataHelper dataHelper;
     @Override
     public boolean addUser(@NonNull UserVo user) throws Exception {
         if (!AppHelper.checkEmail(user.getEmail())) return false;
@@ -51,7 +53,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<UserVo> getAllUsers() {
-        return adminServiceJpaService.getAllUsers().stream().map(x -> new UserVo(x.getId(), x.getName(), x.getSurname(), x.getEmail(), x.getPassword(), x.getRubles())).toList();
+        return adminServiceJpaService.getAllUsers().stream()
+                .map(dataHelper::getUserVo)
+                .toList();
     }
 
     @Override
@@ -67,7 +71,10 @@ public class AdminServiceImpl implements AdminService {
     private  StoreEntity getEntityStore(StoreVo storeVo){
         return new StoreEntity(storeVo.getId(),storeVo.getName(),storeVo.getAddress(),storeVo.getSubjectProduct(),storeVo.getStatus());
     }
+
+    //TODO ADD userEntity by user_id from jwt
     private ElectronicEntity getProductEntity(ElectronicProductVo electronicProductVo){
-        return new ElectronicEntity(electronicProductVo.getId(), electronicProductVo.getName(), electronicProductVo.getPrice(), electronicProductVo.getCount(),new StoreEntity(electronicProductVo.getId()));
+        return new ElectronicEntity(electronicProductVo.getId(), electronicProductVo.getName(), electronicProductVo.getPrice(), electronicProductVo.getCount(),
+                new StoreEntity(electronicProductVo.getId()),null);
     }
 }
