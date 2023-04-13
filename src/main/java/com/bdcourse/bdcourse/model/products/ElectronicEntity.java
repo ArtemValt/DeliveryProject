@@ -1,8 +1,9 @@
 package com.bdcourse.bdcourse.model.products;
 
-import com.bdcourse.bdcourse.model.admin.UserEntity;
-import com.bdcourse.bdcourse.model.stors.StoreEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,12 +26,5 @@ public class ElectronicEntity {
     private String productName;
     private BigDecimal price;
     private int countProducts;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_position_id")
-    StoreEntity store;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_position_id")
-    UserEntity userEntity;
 
 }

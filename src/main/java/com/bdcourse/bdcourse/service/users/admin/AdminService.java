@@ -1,6 +1,7 @@
 package com.bdcourse.bdcourse.service.users.admin;
 
 
+import com.bdcourse.bdcourse.model.vo.StoreVo;
 import com.bdcourse.bdcourse.model.vo.UserVo;
 import lombok.NonNull;
 
@@ -11,5 +12,5 @@ public interface AdminService {
     boolean banUser(@NonNull UserVo user);
     boolean userUpdate(@NonNull UserVo userVo, UserStatisticUpdate userStatisticUpdate);
     List<UserVo> getAllUsers();
-    void addNewStore();
+    StoreVo addNewStore();
 }

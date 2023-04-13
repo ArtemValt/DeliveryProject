@@ -27,7 +27,7 @@ public class AdminController {
         if (result) return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, true);
         return ResponseHandler.generateResponse(ResponseEnum.FAIL, HttpStatus.INTERNAL_SERVER_ERROR, ResponseEnum.FAIL.getMessage());
     }
-    @PostMapping(value = "/banUser")
+    @PutMapping(value = "/banUser")
     public ResponseEntity<Object> banUser(@ModelAttribute UserVo userVo) {
         boolean result = adminService.banUser(userVo);
         if (result) return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, ResponseEnum.GOOD.getMessage());
@@ -39,5 +39,10 @@ public class AdminController {
         List<UserVo> users = adminService.getAllUsers();
         return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, CollectionUtils.isEmpty(users) ?
                 Collections.emptyList() : users);
+    }
+    @PostMapping(value = "/addNewStore")
+    public ResponseEntity<Object> addNewStore(){
+        var storeVo = adminService.addNewStore();
+        return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, storeVo);
     }
 }

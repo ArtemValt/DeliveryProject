@@ -1,4 +1,4 @@
-package com.bdcourse.bdcourse.model.admin;
+package com.bdcourse.bdcourse.model.entitys;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

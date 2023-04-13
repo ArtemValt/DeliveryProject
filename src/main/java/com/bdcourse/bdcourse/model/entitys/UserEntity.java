@@ -1,7 +1,6 @@
-package com.bdcourse.bdcourse.model.admin;
+package com.bdcourse.bdcourse.model.entitys;
 
 import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
-import com.bdcourse.bdcourse.model.NameEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,14 +29,13 @@ public class UserEntity implements UserDetails {
     private String surname;
     private BigDecimal rubles;
     private String password;
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
     @Enumerated(EnumType.STRING)
     private Status status;
     @Column(columnDefinition = "varchar (255) default 'USER' ")
     @Enumerated(EnumType.STRING)
     RoleEnum roleEnum;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(roleEnum.name()));

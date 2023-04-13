@@ -28,8 +28,15 @@ public class UserController {
         return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, stores);
     }
 
-    @GetMapping(value = "getUserProductByUserID")
-    public ResponseEntity getUserProductByUserID(@RequestParam(value = "userId") String userId) {
+    @PostMapping(value = "/byProductToUser")
+    public ResponseEntity byProducts(@RequestParam(value = "name", required = false) String name) {
+        userService.buyProduct(new ElectronicProductVo(null,null,0,name));
+        return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, "ALL GOOD");
+    }
+
+    @GetMapping(value = "/getUserProductByUserId")
+    public ResponseEntity getUserProductByUserID() {
+        String userId = SecurityHelper.getUserId();
         if (AppHelper.isValidUUID(userId)) {
             List<ElectronicProductVo> productsUser = userService.getProductsUser(userId);
             return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, productsUser);

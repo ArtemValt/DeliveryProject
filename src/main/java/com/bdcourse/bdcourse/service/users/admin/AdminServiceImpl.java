@@ -5,8 +5,8 @@ import com.bdcourse.bdcourse.helper.DataHelper;
 import com.bdcourse.bdcourse.jpa.ProductStoreCrudJp;
 import com.bdcourse.bdcourse.jpa.StoreCrudJpa;
 import com.bdcourse.bdcourse.jpa.UserRepository;
-import com.bdcourse.bdcourse.model.admin.Status;
-import com.bdcourse.bdcourse.model.admin.UserEntity;
+import com.bdcourse.bdcourse.model.entitys.Status;
+import com.bdcourse.bdcourse.model.entitys.UserEntity;
 import com.bdcourse.bdcourse.model.products.ElectronicEntity;
 import com.bdcourse.bdcourse.model.stors.StoreEntity;
 import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
@@ -19,9 +19,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -31,6 +31,7 @@ public class AdminServiceImpl implements AdminService {
     private final StoreCrudJpa storeCrudJpa;
     private final ProductStoreCrudJp productStoreCrudJp;
     private final DataHelper dataHelper;
+
     @Override
     public boolean addUser(@NonNull UserVo user) throws Exception {
         if (!AppHelper.checkEmail(user.getEmail())) return false;
@@ -59,22 +60,24 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void addNewStore() {
-        StoreVo storeVo = new StoreVo(UUID.randomUUID().toString(), "firtstStore", "staraZagora", "tvs",Status.ACTIVE);
-        var storeEntity = storeCrudJpa.save(getEntityStore(storeVo));
-        ElectronicProductVo electronicProductVo = new ElectronicProductVo();
-        electronicProductVo.setId(storeEntity.getId());
-        electronicProductVo.setName("productName");
-        electronicProductVo.setPrice(BigDecimal.valueOf(123));
-        productStoreCrudJp.save(getProductEntity(electronicProductVo));
-    }
-    private  StoreEntity getEntityStore(StoreVo storeVo){
-        return new StoreEntity(storeVo.getId(),storeVo.getName(),storeVo.getAddress(),storeVo.getSubjectProduct(),storeVo.getStatus());
+    public StoreVo addNewStore() {
+        StoreVo storeVo = new StoreVo(null, "firtstStore", "staraZagora", "tvs",
+                Status.ACTIVE, List.of(new ElectronicProductVo(null, new BigDecimal(100), 2, "продукт1"),
+                new ElectronicProductVo(null, new BigDecimal(500), 3, "продукт2")));
+        List<ElectronicEntity> entities = new ArrayList<>();
+        storeVo.getProductVos().forEach(x -> {
+            ElectronicEntity electronicEntityFromVo = DataHelper.getElectronicEntityFromVo(x);
+            entities.add(productStoreCrudJp.save(electronicEntityFromVo));
+        });
+        var storeEntity = getEntityStore(storeVo);
+        storeEntity.setProducts(entities);
+        storeCrudJpa.save(storeEntity);
+        return storeVo;
     }
 
-    //TODO ADD userEntity by user_id from jwt
-    private ElectronicEntity getProductEntity(ElectronicProductVo electronicProductVo){
-        return new ElectronicEntity(electronicProductVo.getId(), electronicProductVo.getName(), electronicProductVo.getPrice(), electronicProductVo.getCount(),
-                new StoreEntity(electronicProductVo.getId()),null);
+    private StoreEntity getEntityStore(StoreVo storeVo) {
+        return new StoreEntity(storeVo.getId(), storeVo.getName(), storeVo.getAddress(), storeVo.getSubjectProduct(), storeVo.getStatus(),
+                storeVo.getProductVos().stream().map(DataHelper::getElectronicEntityFromVo).toList());
     }
+
 }

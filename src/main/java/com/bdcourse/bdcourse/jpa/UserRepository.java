@@ -1,6 +1,6 @@
 package com.bdcourse.bdcourse.jpa;
 
-import com.bdcourse.bdcourse.model.admin.UserEntity;
+import com.bdcourse.bdcourse.model.entitys.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, UUID> {
+public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     @Modifying
     @Query(value = "insert into aaa_users (id,name,surname,rubles,password,email,status) "
@@ -32,4 +32,4 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     @Query(value = "select u from UserEntity u where u.email =:email")
     Optional<UserEntity> findByEmail(@Param(value = "email") String email);
-}
+    }
