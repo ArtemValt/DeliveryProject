@@ -2,8 +2,9 @@ package com.bdcourse.bdcourse.model.vo;
 
 import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
 import com.bdcourse.bdcourse.model.NameEntity;
-import com.bdcourse.bdcourse.model.entitys.Status;
-import com.bdcourse.bdcourse.model.entitys.UserProducts;
+import com.bdcourse.bdcourse.model.Status;
+import com.bdcourse.bdcourse.model.entitys.RegionEntity;
+import com.bdcourse.bdcourse.model.entitys.UserProductEntity;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -24,5 +25,6 @@ public class UserVo implements NameEntity {
     private final BigDecimal rubles;
     private final Status status;
     private final RoleEnum roleEnum;
-    private final List<UserProducts> productVoList;
+    private final List<UserProductEntity> productVoList;
+    private final RegionEntity regionEntity;
 }

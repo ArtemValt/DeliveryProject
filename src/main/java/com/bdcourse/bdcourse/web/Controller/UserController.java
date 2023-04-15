@@ -21,12 +21,12 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping(value = "/getStores")
-    public ResponseEntity getStores(@RequestParam(value = "name", required = false) String name,
-                                    @RequestParam(value = "address", required = false) String address) {
-        List<StoreVo> stores = userService.getStores(name, address);
-        return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, stores);
-    }
+//    @GetMapping(value = "/getStores")
+//    public ResponseEntity getStores(@RequestParam(value = "name", required = false) String name,
+//                                    @RequestParam(value = "address", required = false) String address) {
+//        List<StoreVo> stores = userService.getStores(name, address);
+//        return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, stores);
+//    }
 
     @PostMapping(value = "/byProductToUser")
     public ResponseEntity byProducts(@RequestParam(value = "name", required = false) String name) {

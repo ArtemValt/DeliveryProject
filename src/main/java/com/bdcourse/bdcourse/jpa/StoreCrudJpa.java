@@ -1,6 +1,6 @@
 package com.bdcourse.bdcourse.jpa;
 
-import com.bdcourse.bdcourse.model.stors.StoreEntity;
+import com.bdcourse.bdcourse.model.entitys.StoreEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

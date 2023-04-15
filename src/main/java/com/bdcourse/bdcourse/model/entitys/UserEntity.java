@@ -1,6 +1,7 @@
 package com.bdcourse.bdcourse.model.entitys;
 
 import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
+import com.bdcourse.bdcourse.model.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +19,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "aaa_users")
 public class UserEntity implements UserDetails {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -36,6 +36,10 @@ public class UserEntity implements UserDetails {
     @Column(columnDefinition = "varchar (255) default 'USER' ")
     @Enumerated(EnumType.STRING)
     RoleEnum roleEnum;
+    @OneToOne
+    @JoinColumn(name = "region_id")
+    RegionEntity regionEntity;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(roleEnum.name()));

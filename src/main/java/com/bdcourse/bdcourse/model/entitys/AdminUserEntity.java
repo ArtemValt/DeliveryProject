@@ -5,7 +5,6 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
-@Table(name = "aaa_adminusers")
 public class AdminUserEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

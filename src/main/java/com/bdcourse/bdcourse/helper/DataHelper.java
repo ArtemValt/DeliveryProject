@@ -2,10 +2,11 @@ package com.bdcourse.bdcourse.helper;
 
 
 import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
-import com.bdcourse.bdcourse.model.entitys.Status;
+import com.bdcourse.bdcourse.model.Status;
+import com.bdcourse.bdcourse.model.entitys.RegionEntity;
 import com.bdcourse.bdcourse.model.entitys.UserEntity;
-import com.bdcourse.bdcourse.model.products.ElectronicEntity;
-import com.bdcourse.bdcourse.model.stors.StoreEntity;
+import com.bdcourse.bdcourse.model.entitys.ProductEntity;
+import com.bdcourse.bdcourse.model.entitys.StoreEntity;
 import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
 import com.bdcourse.bdcourse.model.vo.StoreVo;
 import com.bdcourse.bdcourse.model.vo.UserVo;
@@ -15,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -56,15 +56,15 @@ public class DataHelper {
         return new UserEntity(userVo.getId(), userVo.getName(),
                 userVo.getSurname(), userVo.getRubles(),
                 userVo.getPassword(), userVo.getEmail(),
-                userVo.getStatus(), userVo.getRoleEnum());
+                userVo.getStatus(), userVo.getRoleEnum(),userVo.getRegionEntity());
 //                .map(DataHelper::getElectronicEntityFromVo)
 //                .collect(Collectors.toList()));
     }
-    public static ElectronicEntity getElectronicEntityFromVo(ElectronicProductVo electronicProductVo){
-        return new ElectronicEntity(electronicProductVo.getId(), electronicProductVo.getName(),
+    public static ProductEntity getElectronicEntityFromVo(ElectronicProductVo electronicProductVo){
+        return new ProductEntity(electronicProductVo.getId(), electronicProductVo.getName(),
                 electronicProductVo.getPrice(), electronicProductVo.getCount());
     }
-    public static ElectronicProductVo getElectronicVoFromEntity(ElectronicEntity entity){
+    public static ElectronicProductVo getElectronicVoFromEntity(ProductEntity entity){
         return new ElectronicProductVo().builder()
                 .count(entity.getCountProducts())
                 .id(entity.getId())
@@ -72,7 +72,7 @@ public class DataHelper {
                 .name(entity.getProductName())
                 .build();
     }
-    public static StoreEntity getStoreEntityFromVo(StoreVo storeVo) {
-        return new StoreEntity(storeVo.getId(), storeVo.getAddress(), storeVo.getSubjectProduct(), storeVo.getName(), storeVo.getStatus(), storeVo.getProductVos().stream().map(DataHelper::getElectronicEntityFromVo).toList());
-    }
+//    public static StoreEntity getStoreEntityFromVo(StoreVo storeVo) {
+//        return new StoreEntity(storeVo.getId(), storeVo.getAddress(), storeVo.getSubjectProduct(), storeVo.getName(), storeVo.getStatus(), storeVo.getProductVos().stream().map(DataHelper::getElectronicEntityFromVo).toList());
+//    }
 }

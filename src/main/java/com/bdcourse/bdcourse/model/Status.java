@@ -1,4 +1,4 @@
-package com.bdcourse.bdcourse.model.entitys;
+package com.bdcourse.bdcourse.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

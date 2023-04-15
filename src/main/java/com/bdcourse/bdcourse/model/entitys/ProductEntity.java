@@ -1,28 +1,27 @@
 package com.bdcourse.bdcourse.model.entitys;
 
-import com.bdcourse.bdcourse.model.products.ElectronicEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserProducts {
+@AllArgsConstructor
+public class ProductEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(generator = "uuid2")
     @Column(name = "id", unique = true)
     private String id;
-    @OneToOne
-    @JoinColumn(name = "store_product_id")
-    private ElectronicEntity electronicEntity;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
-    private int count;
+    private String productName;
+    private BigDecimal price;
+    private int countProducts;
 
 }

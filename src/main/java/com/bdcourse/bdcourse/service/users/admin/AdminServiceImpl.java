@@ -3,12 +3,14 @@ package com.bdcourse.bdcourse.service.users.admin;
 import com.bdcourse.bdcourse.helper.AppHelper;
 import com.bdcourse.bdcourse.helper.DataHelper;
 import com.bdcourse.bdcourse.jpa.ProductStoreCrudJp;
+import com.bdcourse.bdcourse.jpa.RegionJpa;
 import com.bdcourse.bdcourse.jpa.StoreCrudJpa;
 import com.bdcourse.bdcourse.jpa.UserRepository;
-import com.bdcourse.bdcourse.model.entitys.Status;
+import com.bdcourse.bdcourse.model.Status;
+import com.bdcourse.bdcourse.model.entitys.RegionEntity;
 import com.bdcourse.bdcourse.model.entitys.UserEntity;
-import com.bdcourse.bdcourse.model.products.ElectronicEntity;
-import com.bdcourse.bdcourse.model.stors.StoreEntity;
+import com.bdcourse.bdcourse.model.entitys.ProductEntity;
+import com.bdcourse.bdcourse.model.entitys.StoreEntity;
 import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
 import com.bdcourse.bdcourse.model.vo.StoreVo;
 import com.bdcourse.bdcourse.model.vo.UserVo;
@@ -30,7 +32,7 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository adminServiceJpaService;
     private final StoreCrudJpa storeCrudJpa;
     private final ProductStoreCrudJp productStoreCrudJp;
-    private final DataHelper dataHelper;
+    private final RegionJpa regionJpa;
 
     @Override
     public boolean addUser(@NonNull UserVo user) throws Exception {
@@ -61,13 +63,14 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public StoreVo addNewStore() {
+        RegionEntity region = regionJpa.save(new RegionEntity(63,"Samara"));
         StoreVo storeVo = new StoreVo(null, "firtstStore", "staraZagora", "tvs",
                 Status.ACTIVE, List.of(new ElectronicProductVo(null, new BigDecimal(100), 2, "продукт1"),
-                new ElectronicProductVo(null, new BigDecimal(500), 3, "продукт2")));
-        List<ElectronicEntity> entities = new ArrayList<>();
+                new ElectronicProductVo(null, new BigDecimal(500), 3, "продукт2")), region);
+        List<ProductEntity> entities = new ArrayList<>();
         storeVo.getProductVos().forEach(x -> {
-            ElectronicEntity electronicEntityFromVo = DataHelper.getElectronicEntityFromVo(x);
-            entities.add(productStoreCrudJp.save(electronicEntityFromVo));
+            ProductEntity productEntityFromVo = DataHelper.getElectronicEntityFromVo(x);
+            entities.add(productStoreCrudJp.save(productEntityFromVo));
         });
         var storeEntity = getEntityStore(storeVo);
         storeEntity.setProducts(entities);
@@ -77,7 +80,7 @@ public class AdminServiceImpl implements AdminService {
 
     private StoreEntity getEntityStore(StoreVo storeVo) {
         return new StoreEntity(storeVo.getId(), storeVo.getName(), storeVo.getAddress(), storeVo.getSubjectProduct(), storeVo.getStatus(),
-                storeVo.getProductVos().stream().map(DataHelper::getElectronicEntityFromVo).toList());
+                storeVo.getProductVos().stream().map(DataHelper::getElectronicEntityFromVo).toList(), storeVo.getRegionEntity());
     }
 
 }

@@ -1,7 +1,7 @@
-package com.bdcourse.bdcourse.model.stors;
+package com.bdcourse.bdcourse.model.entitys;
 
-import com.bdcourse.bdcourse.model.entitys.Status;
-import com.bdcourse.bdcourse.model.products.ElectronicEntity;
+import com.bdcourse.bdcourse.model.Status;
+import com.bdcourse.bdcourse.model.entitys.ProductEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "store")
 @NoArgsConstructor
 @AllArgsConstructor
 public class StoreEntity {
@@ -28,7 +27,10 @@ public class StoreEntity {
     private Status status;
     @OneToMany
     @JoinColumn(name = "store_id")
-    List<ElectronicEntity> products;
+    List<ProductEntity> products;
+    @OneToOne
+    @JoinColumn(name = "region_id")
+    RegionEntity regionEntity;
 
 
 }

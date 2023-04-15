@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
     void buyProduct(ElectronicProductVo electronicProductVo);
     void resetProduct(ElectronicProductVo electronicProductVo);
-    List<StoreVo> getStores(String name, String address);
+//    List<StoreVo> getStores(String name, String address);
     PartOfList<StoreVo> getProductsFromCurrentStore(StoreVo storeVo);
     List<ElectronicProductVo> getProductsUser(String userId);
 

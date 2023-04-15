@@ -1,7 +1,8 @@
 package com.bdcourse.bdcourse.model.vo;
 
 import com.bdcourse.bdcourse.model.NameEntity;
-import com.bdcourse.bdcourse.model.entitys.Status;
+import com.bdcourse.bdcourse.model.Status;
+import com.bdcourse.bdcourse.model.entitys.RegionEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,5 +19,6 @@ public class StoreVo implements NameEntity {
     private String subjectProduct;
     private Status status;
     private List<ElectronicProductVo> productVos;
+    private RegionEntity regionEntity;
 }
 
