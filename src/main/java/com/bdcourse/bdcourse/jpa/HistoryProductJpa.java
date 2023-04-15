@@ -1,7 +1,6 @@
 package com.bdcourse.bdcourse.jpa;
 
 import com.bdcourse.bdcourse.model.entitys.HistoryDeliveryEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

@@ -1,8 +1,8 @@
 package com.bdcourse.bdcourse.service;
 
 import com.bdcourse.bdcourse.jpa.CourierJpa;
-import com.bdcourse.bdcourse.model.entitys.CourierEntity;
 import com.bdcourse.bdcourse.model.Status;
+import com.bdcourse.bdcourse.model.entitys.CourierEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

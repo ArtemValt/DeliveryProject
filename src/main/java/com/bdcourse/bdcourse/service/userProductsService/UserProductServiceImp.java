@@ -1,8 +1,8 @@
 package com.bdcourse.bdcourse.service.userProductsService;
 
 import com.bdcourse.bdcourse.jpa.ProductUserRep;
-import com.bdcourse.bdcourse.model.entitys.UserProductEntity;
 import com.bdcourse.bdcourse.model.entitys.ProductEntity;
+import com.bdcourse.bdcourse.model.entitys.UserProductEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

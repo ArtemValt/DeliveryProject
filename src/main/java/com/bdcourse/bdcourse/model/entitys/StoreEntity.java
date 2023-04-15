@@ -1,7 +1,6 @@
 package com.bdcourse.bdcourse.model.entitys;
 
 import com.bdcourse.bdcourse.model.Status;
-import com.bdcourse.bdcourse.model.entitys.ProductEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

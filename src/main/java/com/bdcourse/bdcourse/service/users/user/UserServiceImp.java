@@ -2,15 +2,13 @@ package com.bdcourse.bdcourse.service.users.user;
 
 
 import com.bdcourse.bdcourse.dto.UserServicesDto;
-import com.bdcourse.bdcourse.helper.DataHelper;
 import com.bdcourse.bdcourse.helper.SecurityHelper;
 import com.bdcourse.bdcourse.jpa.ProductUserRep;
 import com.bdcourse.bdcourse.jpa.UserRepository;
 import com.bdcourse.bdcourse.model.PartOfList;
+import com.bdcourse.bdcourse.model.entitys.ProductEntity;
 import com.bdcourse.bdcourse.model.entitys.UserEntity;
 import com.bdcourse.bdcourse.model.entitys.UserProductEntity;
-import com.bdcourse.bdcourse.model.entitys.ProductEntity;
-import com.bdcourse.bdcourse.model.entitys.StoreEntity;
 import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
 import com.bdcourse.bdcourse.model.vo.StoreVo;
 import com.bdcourse.bdcourse.service.CourierService;
@@ -18,14 +16,11 @@ import com.bdcourse.bdcourse.service.historyService.HistoryProductService;
 import com.bdcourse.bdcourse.service.productService.ProductServiceIml;
 import com.bdcourse.bdcourse.service.userProductsService.UserProductService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
