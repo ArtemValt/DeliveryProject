@@ -9,7 +9,6 @@ import java.util.Optional;
 
 public interface UserServicesDto {
     PartOfList<StoreVo> getStores(String name, String address);
-    void buyProduct(ElectronicProductVo electronicProductVo);
     Optional<ProductEntity> getProduct(ElectronicProductVo electronicProductVo, String userId);
     PartOfList<ElectronicProductVo> getUsersProductsByUserId(String userId);
     PartOfList<ElectronicProductVo> getProductFromCurrentStore(StoreVo storeVo);

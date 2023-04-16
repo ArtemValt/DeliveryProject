@@ -30,6 +30,6 @@ public class HistoryProductServiceImp implements HistoryProductService {
         }
         historyUser.setEntities(productEntity);
         historyUser.setUserEntity(user);
-        HistoryDeliveryEntity history = historyProductJpa.save(historyUser);
+        historyProductJpa.save(historyUser);
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +26,6 @@ public class UserEntity implements UserDetails {
     private String id;
     private String name;
     private String surname;
-    private BigDecimal rubles;
     private String password;
     @Column(unique = true)
     private String email;
@@ -44,6 +42,10 @@ public class UserEntity implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(roleEnum.name()));
     }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id")
+    PaymentMethodsEntity paymentMethodsEntity;
 
     @Override
     public String getUsername() {

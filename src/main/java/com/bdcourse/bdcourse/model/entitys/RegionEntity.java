@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RegionEntity {
     @Id
-    @Column(name = "regionCode", unique = true)
+    @Column(name = "region_code", unique = true)
     private int regionCode;
     private String regionName;
 

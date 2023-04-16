@@ -37,11 +37,6 @@ public class UserServicesDtoImp implements UserServicesDto {
     }
 
     @Override
-    public void buyProduct(ElectronicProductVo electronicProductVo) {
-
-    }
-
-    @Override
     public Optional<ProductEntity> getProduct(ElectronicProductVo electronicProductVo, String userId) {
         var query = em.createQuery("select e from ProductEntity e " +
                 "where exists (select 1 from UserEntity u  where u.id=:id and u.rubles>=e.price )" +

@@ -23,4 +23,9 @@ public class UserProductServiceImp implements UserProductService {
         userProductEntity.setCount(userProductEntity.getCount() + 1);
         return productUserRep.save(userProductEntity);
     }
+
+    @Override
+    public void saveProductUser(UserProductEntity userProductEntity) {
+        productUserRep.save(userProductEntity);
+    }
 }

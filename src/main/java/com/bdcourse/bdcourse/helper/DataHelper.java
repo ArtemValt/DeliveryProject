@@ -21,8 +21,8 @@ public class DataHelper {
     private static PasswordEncoder passwordEncoder;
 
     @Autowired(required = true)
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder){
-        DataHelper.passwordEncoder=passwordEncoder;
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        DataHelper.passwordEncoder = passwordEncoder;
     }
 
     public static UserVo getUserVo(String email, String surname, String name, BigDecimal rubles, String password, Status status, List<ElectronicProductVo> productVos) {
@@ -43,7 +43,7 @@ public class DataHelper {
                 .email(userEntity.getEmail())
                 .surname(userEntity.getSurname())
                 .name(userEntity.getName())
-                .rubles(userEntity.getRubles())
+//                .rubles(userEntity.getRubles())
                 .password(userEntity.getPassword())
                 .status(userEntity.getStatus())
                 .roleEnum(RoleEnum.USER).build();
@@ -51,17 +51,19 @@ public class DataHelper {
 
     public static UserEntity getUserEntityFromUserVo(UserVo userVo) {
         return new UserEntity(userVo.getId(), userVo.getName(),
-                userVo.getSurname(), userVo.getRubles(),
+                userVo.getSurname(),
                 userVo.getPassword(), userVo.getEmail(),
-                userVo.getStatus(), userVo.getRoleEnum(),userVo.getRegionEntity());
+                userVo.getStatus(), userVo.getRoleEnum(), userVo.getRegionEntity(), null);
 //                .map(DataHelper::getElectronicEntityFromVo)
 //                .collect(Collectors.toList()));
     }
-    public static ProductEntity getElectronicEntityFromVo(ElectronicProductVo electronicProductVo){
+
+    public static ProductEntity getElectronicEntityFromVo(ElectronicProductVo electronicProductVo) {
         return new ProductEntity(electronicProductVo.getId(), electronicProductVo.getName(),
-                electronicProductVo.getPrice(), electronicProductVo.getCount());
+                electronicProductVo.getPrice(), electronicProductVo.getCount(), null);
     }
-    public static ElectronicProductVo getElectronicVoFromEntity(ProductEntity entity){
+
+    public static ElectronicProductVo getElectronicVoFromEntity(ProductEntity entity) {
         return new ElectronicProductVo().builder()
                 .count(entity.getCountProducts())
                 .id(entity.getId())

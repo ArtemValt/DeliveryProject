@@ -1,9 +1,6 @@
 package com.bdcourse.bdcourse.model.entitys;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,5 +23,7 @@ public class ProductEntity {
     private String productName;
     private BigDecimal price;
     private int countProducts;
-
+    @OneToOne
+    @JoinColumn(name = "determination_id")
+    private DeterminationEntity determinationEntity;
 }

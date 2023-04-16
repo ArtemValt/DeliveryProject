@@ -27,6 +27,4 @@ public class HistoryDeliveryEntity {
     @OneToOne
     @JoinColumn(name = "product_id")
     ProductEntity entities;
-
-
 }

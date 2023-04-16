@@ -23,7 +23,6 @@ public class ProductServiceIml implements ProductService {
         if (product.isEmpty()) throw new RuntimeException("product is not define");
         ProductEntity entity = product.get();
         entity.setCountProducts(entity.getCountProducts() - 1);
-
         return productRepository.save(entity);
     }
 }

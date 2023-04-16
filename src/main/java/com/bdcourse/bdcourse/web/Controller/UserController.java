@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/user/service")
-public class UserController {
+public class UserController extends ExceptionController {
     private final UserService userService;
 
 //    @GetMapping(value = "/getStores")
@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping(value = "/byProductToUser")
     public ResponseEntity byProducts(@RequestParam(value = "name", required = false) String name) {
-        userService.buyProduct(new ElectronicProductVo(null,null,0,name));
+        userService.buyProduct(new ElectronicProductVo(null, null, 0, name));
         return ResponseHandler.generateResponse(ResponseEnum.GOOD, HttpStatus.OK, "ALL GOOD");
     }
 

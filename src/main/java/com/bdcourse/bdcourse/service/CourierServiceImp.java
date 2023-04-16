@@ -18,7 +18,7 @@ public class CourierServiceImp implements CourierService {
 
     @Override
     public CourierEntity findFreeCourier() {
-        return Objects.nonNull(courierJpa.getFreeCourier()) ? courierJpa.getFreeCourier() : new CourierEntity();
+        return Objects.nonNull(courierJpa.getFreeCourier()) ? courierJpa.getFreeCourier() : getNewEntity();
     }
 
     @Override
@@ -27,6 +27,6 @@ public class CourierServiceImp implements CourierService {
     }
 
     private CourierEntity getNewEntity() {
-        return new CourierEntity(null, new Date(), Status.ACTIVE, null);
+        return new CourierEntity(null, new Date(), Status.ACTIVE, null, null);
     }
 }

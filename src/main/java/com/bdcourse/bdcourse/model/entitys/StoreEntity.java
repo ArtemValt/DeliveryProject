@@ -24,7 +24,7 @@ public class StoreEntity {
     private String storeName;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "store_id")
     List<ProductEntity> products;
     @OneToOne
