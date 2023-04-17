@@ -1,8 +1,6 @@
 package com.bdcourse.bdcourse.service.users.admin;
 
 
-import com.bdcourse.bdcourse.model.vo.StoreVo;
-import com.bdcourse.bdcourse.model.vo.UserVo;
 import lombok.NonNull;
 
 import java.util.List;

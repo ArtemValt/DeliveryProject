@@ -5,8 +5,6 @@ import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
 import com.bdcourse.bdcourse.model.Status;
 import com.bdcourse.bdcourse.model.entitys.ProductEntity;
 import com.bdcourse.bdcourse.model.entitys.UserEntity;
-import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
-import com.bdcourse.bdcourse.model.vo.UserVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -53,7 +51,7 @@ public class DataHelper {
         return new UserEntity(userVo.getId(), userVo.getName(),
                 userVo.getSurname(),
                 userVo.getPassword(), userVo.getEmail(),
-                userVo.getStatus(), userVo.getRoleEnum(), userVo.getRegionEntity(), null);
+                userVo.getStatus(), userVo.getRoleEnum(), userVo.getRegionEntity(), null, null);
 //                .map(DataHelper::getElectronicEntityFromVo)
 //                .collect(Collectors.toList()));
     }

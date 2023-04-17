@@ -4,7 +4,6 @@ import com.bdcourse.bdcourse.dto.UserServicesDto;
 import com.bdcourse.bdcourse.helper.SecurityHelper;
 import com.bdcourse.bdcourse.jpa.ProductRepository;
 import com.bdcourse.bdcourse.model.entitys.ProductEntity;
-import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

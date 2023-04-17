@@ -2,9 +2,7 @@ package com.bdcourse.bdcourse.dto;
 
 import com.bdcourse.bdcourse.model.PartOfList;
 import com.bdcourse.bdcourse.model.entitys.ProductEntity;
-import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
 import com.bdcourse.bdcourse.model.vo.PartOfListVo;
-import com.bdcourse.bdcourse.model.vo.StoreVo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;

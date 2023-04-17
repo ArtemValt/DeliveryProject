@@ -1,8 +1,6 @@
 package com.bdcourse.bdcourse.service.users.user;
 
 import com.bdcourse.bdcourse.model.PartOfList;
-import com.bdcourse.bdcourse.model.vo.ElectronicProductVo;
-import com.bdcourse.bdcourse.model.vo.StoreVo;
 
 import java.util.List;
 

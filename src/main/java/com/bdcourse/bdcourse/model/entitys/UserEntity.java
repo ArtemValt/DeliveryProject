@@ -29,6 +29,7 @@ public class UserEntity implements UserDetails {
     private String password;
     @Column(unique = true)
     private String email;
+    @Column(columnDefinition = "varchar (255) default 'ACTIVE' ")
     @Enumerated(EnumType.STRING)
     private Status status;
     @Column(columnDefinition = "varchar (255) default 'USER' ")
@@ -37,6 +38,9 @@ public class UserEntity implements UserDetails {
     @OneToOne
     @JoinColumn(name = "region_id")
     RegionEntity regionEntity;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    List<AddressEntity> addressEntities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

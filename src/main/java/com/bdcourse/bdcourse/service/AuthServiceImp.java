@@ -6,7 +6,6 @@ import com.bdcourse.bdcourse.jpa.UserRepository;
 import com.bdcourse.bdcourse.model.Status;
 import com.bdcourse.bdcourse.model.entitys.RegionEntity;
 import com.bdcourse.bdcourse.model.entitys.UserEntity;
-import com.bdcourse.bdcourse.model.vo.UserVo;
 import com.bdcourse.bdcourse.security.jwtToken.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
