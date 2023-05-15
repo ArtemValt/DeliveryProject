@@ -5,12 +5,13 @@ import com.bdcourse.bdcourse.bdcourseenums.RoleEnum;
 import com.bdcourse.bdcourse.model.Status;
 import com.bdcourse.bdcourse.model.entitys.ProductEntity;
 import com.bdcourse.bdcourse.model.entitys.UserEntity;
+import com.bdcourse.bdcourse.model.vo.ProductVo;
+import com.bdcourse.bdcourse.model.vo.UserVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -23,16 +24,14 @@ public class DataHelper {
         DataHelper.passwordEncoder = passwordEncoder;
     }
 
-    public static UserVo getUserVo(String email, String surname, String name, BigDecimal rubles, String password, Status status, List<ElectronicProductVo> productVos) {
+    public static UserVo getUserVo(String email, String surname, String name, String password, Status status, List<ProductVo> productVos) {
         return UserVo.builder()
                 .email(email)
                 .surname(surname)
                 .name(name)
-                .rubles(rubles)
                 .password(passwordEncoder.encode(password))
                 .status(status)
                 .roleEnum(RoleEnum.USER)
-//                .productVoList(productVos)
                 .build();
     }
 
@@ -41,32 +40,27 @@ public class DataHelper {
                 .email(userEntity.getEmail())
                 .surname(userEntity.getSurname())
                 .name(userEntity.getName())
-//                .rubles(userEntity.getRubles())
                 .password(userEntity.getPassword())
                 .status(userEntity.getStatus())
                 .roleEnum(RoleEnum.USER).build();
     }
 
     public static UserEntity getUserEntityFromUserVo(UserVo userVo) {
-        return new UserEntity(userVo.getId(), userVo.getName(),
-                userVo.getSurname(),
-                userVo.getPassword(), userVo.getEmail(),
-                userVo.getStatus(), userVo.getRoleEnum(), userVo.getRegionEntity(), null, null);
-//                .map(DataHelper::getElectronicEntityFromVo)
-//                .collect(Collectors.toList()));
+        return new UserEntity(userVo.getId(), userVo.getName(), userVo.getSurname(), userVo.getPassword(), userVo.getEmail(), userVo.getStatus(),
+                userVo.getRoleEnum(), userVo.getRegionEntity(), userVo.getAddressEntities(), userVo.getPaymentMethodsVos());
     }
 
-    public static ProductEntity getElectronicEntityFromVo(ElectronicProductVo electronicProductVo) {
-        return new ProductEntity(electronicProductVo.getId(), electronicProductVo.getName(),
-                electronicProductVo.getPrice(), electronicProductVo.getCount(), null);
+    public static ProductEntity getElectronicEntityFromVo(ProductVo electronicProductVo) {
+        return new ProductEntity(electronicProductVo.getId(), electronicProductVo.getProductName(),
+                electronicProductVo.getPrice(), electronicProductVo.getCountProducts(), null);
     }
 
-    public static ElectronicProductVo getElectronicVoFromEntity(ProductEntity entity) {
-        return new ElectronicProductVo().builder()
-                .count(entity.getCountProducts())
+    public static ProductVo getElectronicVoFromEntity(ProductEntity entity) {
+        return ProductVo.builder()
+                .countProducts(entity.getCountProducts())
                 .id(entity.getId())
                 .price(entity.getPrice())
-                .name(entity.getProductName())
+                .productName(entity.getProductName())
                 .build();
     }
 //    public static StoreEntity getStoreEntityFromVo(StoreVo storeVo) {

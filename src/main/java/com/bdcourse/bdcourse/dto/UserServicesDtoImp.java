@@ -3,6 +3,8 @@ package com.bdcourse.bdcourse.dto;
 import com.bdcourse.bdcourse.model.PartOfList;
 import com.bdcourse.bdcourse.model.entitys.ProductEntity;
 import com.bdcourse.bdcourse.model.vo.PartOfListVo;
+import com.bdcourse.bdcourse.model.vo.ProductVo;
+import com.bdcourse.bdcourse.model.vo.StoreVo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,7 @@ public class UserServicesDtoImp implements UserServicesDto {
 
     @Override
     public PartOfList<StoreVo> getStores(String name, String address) {
-        String selectQuery = " select new com.bdcourse.bdcourse.model.vo.StoreVo(s.id,s.storeName,s.address,s.subjectProduct,s.status,s.products) " +
+        String selectQuery = " select new com.bdcourse.bdcourse.model.vo.StoreVo(s.id,s.address,s.subjectProduct,s.storeName,s.status,s.products,s.regionEntity) " +
                 "from StoreEntity s ";
         var query = em.createQuery(selectQuery + filterPart(name, address));
         if (StringUtils.isNotBlank(name)) {
@@ -35,25 +37,25 @@ public class UserServicesDtoImp implements UserServicesDto {
     }
 
     @Override
-    public Optional<ProductEntity> getProduct(ElectronicProductVo electronicProductVo, String userId) {
+    public Optional<ProductEntity> getProduct(ProductVo electronicProductVo, String userId) {
         var query = em.createQuery("select e from ProductEntity e " +
-                "where exists (select 1 from UserEntity u  where u.id=:id and u.rubles>=e.price )" +
+                "where exists (select 1 from UserEntity u  where u.id=:id  )" +
                 "and e.countProducts <> 0 and lower( e.productName )like :name ");
-        query.setParameter("name", "%" + electronicProductVo.getName().trim().toLowerCase() + "%");
+        query.setParameter("name", "%" + electronicProductVo.getProductName().trim().toLowerCase() + "%");
         query.setParameter("id", userId);
-        return  query.getResultList().stream().findFirst();
+        return query.getResultList().stream().findFirst();
     }
 
     @Override
-    public PartOfList<ElectronicProductVo> getUsersProductsByUserId(String userId) {
-        var query = em.createQuery("select u.productVos from  UserEntity u where u.id=:userId");
+    public PartOfList<ProductVo> getUsersProductsByUserId(String userId) {
+        var query = em.createQuery("select u.productEntity from  UserProductEntity u where u.id=:userId");
         query.setParameter("userId", userId);
 
         return new PartOfListVo<>(query.getResultList(), query.getResultList().size());
     }
 
     @Override
-    public PartOfList<ElectronicProductVo> getProductFromCurrentStore(StoreVo storeVo) {
+    public PartOfList<ProductEntity> getProductFromCurrentStore(StoreVo storeVo) {
         var query = em.createQuery("select p.products from StoreEntity p where p.id =:id ");
         query.setParameter("id", storeVo.getId());
         return new PartOfListVo<>(query.getResultList(), query.getResultList().size());

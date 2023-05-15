@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "product")
 public class ProductEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

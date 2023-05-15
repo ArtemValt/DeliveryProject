@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "product_user")
 public class UserProductEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

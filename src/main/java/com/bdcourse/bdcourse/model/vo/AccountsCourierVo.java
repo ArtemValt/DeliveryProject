@@ -1,6 +1,7 @@
 package com.bdcourse.bdcourse.model.vo;
 
-import lombok.*;
+import com.bdcourse.bdcourse.model.entitys.CourierEntity;
+import lombok.Data;
 
 @Data
 public class AccountsCourierVo {

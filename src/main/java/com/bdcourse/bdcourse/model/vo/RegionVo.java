@@ -1,6 +1,6 @@
 package com.bdcourse.bdcourse.model.vo;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
 public class RegionVo {

@@ -12,6 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "courier_account")
 public class AccountsCourierEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

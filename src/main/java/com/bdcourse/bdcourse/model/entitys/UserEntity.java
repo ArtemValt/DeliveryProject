@@ -18,6 +18,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "aaa_user")
 public class UserEntity implements UserDetails {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -42,14 +43,14 @@ public class UserEntity implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     List<AddressEntity> addressEntities;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id")
+    PaymentMethodsEntity paymentMethodsEntity;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(roleEnum.name()));
     }
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id")
-    PaymentMethodsEntity paymentMethodsEntity;
 
     @Override
     public String getUsername() {

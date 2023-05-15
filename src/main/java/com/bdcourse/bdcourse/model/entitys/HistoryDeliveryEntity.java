@@ -12,6 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "delivery_history")
 public class HistoryDeliveryEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

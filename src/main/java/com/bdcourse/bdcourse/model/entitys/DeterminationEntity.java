@@ -1,9 +1,6 @@
 package com.bdcourse.bdcourse.model.entitys;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "aaa_determination")
 public class DeterminationEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

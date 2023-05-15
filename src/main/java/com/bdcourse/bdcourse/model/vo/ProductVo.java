@@ -1,14 +1,16 @@
 package com.bdcourse.bdcourse.model.vo;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
+@Builder
 public class ProductVo {
-    private final String id;
-    private final String productName;
-    private  final BigDecimal price;
-    private final int countProducts;
-    private final DeterminationVo determinationEntity;
+    private String id;
+    private String productName;
+    private BigDecimal price;
+    private int countProducts;
+    private DeterminationVo determinationEntity;
 }

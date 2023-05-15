@@ -1,10 +1,10 @@
 package com.bdcourse.bdcourse.model.vo;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
 public class AddressVo {
     private final String id;
-    private final UserEntity user;
+    private final UserVo user;
 
 }

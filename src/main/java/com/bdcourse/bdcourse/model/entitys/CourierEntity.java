@@ -16,6 +16,7 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
+@Table(name = "aaa_couriers")
 public class CourierEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

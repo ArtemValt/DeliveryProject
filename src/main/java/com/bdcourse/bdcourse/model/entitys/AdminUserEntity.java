@@ -1,13 +1,12 @@
 package com.bdcourse.bdcourse.model.entitys;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
+@Table(name = "admin_user")
+
 public class AdminUserEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

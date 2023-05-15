@@ -14,6 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "aaa_bank")
 public class BankEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
